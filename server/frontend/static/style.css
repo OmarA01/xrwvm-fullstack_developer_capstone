@@ -124,3 +124,51 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.contact_card {
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px #999;
+    background-color: white;
+    position: relative;
+  }
+  
+  .contact_img {
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  .contact_watermark {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    color: rgba(0, 0, 255, 0.2);
+    font-weight: bold;
+    pointer-events: none;
+  }
+  
+  .contact_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+  
+  .contact_details {
+    flex: 2;
+    font-size: 18px;
+    padding-left: 30px;
+    color: rgb(97, 64, 128);
+  }
+  
+  .contact_image {
+    width: 500px;
+    height: auto;
+  }
+
+  
