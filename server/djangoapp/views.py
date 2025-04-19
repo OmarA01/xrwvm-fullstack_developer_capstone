@@ -104,8 +104,6 @@ def get_dealer_details(request, dealer_id):
 
 
 
-    path(route='dealer/<int:dealer_id>', view=views.get_dealer_details, name='dealer_details'),
-
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
     if(dealer_id):
