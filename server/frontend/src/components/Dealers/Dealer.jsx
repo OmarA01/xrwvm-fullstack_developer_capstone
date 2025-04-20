@@ -16,37 +16,45 @@ const Dealer = () => {
   const [loadingDealer, setLoadingDealer] = useState(true);
 
   const { id } = useParams();
-  const curr_url = window.location.href;
-  const root_url = curr_url.substring(0, curr_url.indexOf("dealer"));
+
+  const root_url = window.location.origin + "/";
   const dealer_url = root_url + `djangoapp/dealer/${id}`;
   const reviews_url = root_url + `djangoapp/reviews/dealer/${id}`;
   const post_review_url = root_url + `postreview/${id}`;
 
-  const get_dealer = async () => {
-    try {
-      const res = await fetch(dealer_url, { method: "GET" });
-      const retobj = await res.json();
-      if (retobj.status === 200) {
-        const dealerobjs = Array.from(retobj.dealer);
-        setDealer(dealerobjs[0]);
-      }
-    } catch (error) {
-      console.error("Failed to fetch dealer:", error);
-    } finally {
-      setLoadingDealer(false);
+ const get_dealer = async () => {
+  try {
+    console.log("Fetching from dealer_url:", dealer_url);
+    const res = await fetch(dealer_url, { method: "GET" });
+    const retobj = await res.json();
+    console.log("Dealer response:", retobj);
+    if (retobj.status === 200) {
+      setDealer(retobj.dealer);
+    } else {
+      console.warn("Non-200 response for dealer:", retobj);
     }
-  };
+  } catch (error) {
+    console.error("Failed to fetch dealer:", error);
+  } finally {
+    setLoadingDealer(false);
+  }
+};
+
 
   const get_reviews = async () => {
     try {
+      console.log("Fetching from reviews_url:", reviews_url);
       const res = await fetch(reviews_url, { method: "GET" });
       const retobj = await res.json();
+      console.log("Reviews response:", retobj);
       if (retobj.status === 200) {
         if (retobj.reviews.length > 0) {
           setReviews(retobj.reviews);
         } else {
           setUnreviewed(true);
         }
+      } else {
+        console.warn("Non-200 response for reviews:", retobj);
       }
     } catch (error) {
       console.error("Failed to fetch reviews:", error);
